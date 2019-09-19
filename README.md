@@ -22,21 +22,31 @@ To deactivate
 ```
 deactivate
 ```
+When pip3 installing new modules to its venv, make sure to freeze it into requirements.txt
+```
+pip freeze > requirements.txt
+```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
+source scripts or add scripts into your .bashrc file for easier bash experience.  
+Make sure to change the first line to absolute path of the infra-dashboard (e.g. in Mac, /Users/masa/infra-dashboard)
 ```
-Give the example
+source .dev_scripts.sh
 ```
 
-And repeat
+To up and run the banken 
 
 ```
-until finished
+start-banken
+```
+If you specifically want to run the container, append its name after start-banken
+```
+start-banken api-server
+```
+To stop the banken containers
+```
+stop-banken
 ```
 
 End with an example of getting some data out of the system or using it for a little demo

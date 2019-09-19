@@ -1,15 +1,19 @@
 
-FROM python:3.6
+FROM python:3.7
 
 RUN apt-get update -y
 
-COPY ./requirements.txt /app/requirements.txt
+ENV APP /banken
 
-WORKDIR /app
+RUN mkdir $APP
+WORKDIR $APP
+
+COPY ./requirements.txt .
+
 RUN pip install -r requirements.txt
 
-COPY . /app
+COPY . .
 
-EXPOSE 8000
+# EXPOSE 8000
 
-CMD ["gunicorn", "-b", "0.0.0.0:8000", "app"]
+# CMD ["gunicorn", "-b", "0.0.0.0:8000", "app"]
