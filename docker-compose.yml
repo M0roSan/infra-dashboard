@@ -4,17 +4,9 @@ services:
   api-server:
     restart: always
     build: ./api-server
-    expose:
-      - "8000"
+    ports:
+      - "8000:8000"
     volumes:
       - ./banken_config.json:/banken/banken_config.json
-    command: /usr/local/bin/gunicorn -b :8000 app:app
-
-  nginx:
-    restart: always
-    build: ./nginx
-    ports:
-      - "80:80"
-    depends_on:
-      - api-server
+    command: /usr/local/bin/gunicorn -b 0.0.0.0:8000 app:app
     
