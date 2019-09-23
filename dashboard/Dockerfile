@@ -14,6 +14,6 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-EXPOSE 8001
+EXPOSE 8002
 
-CMD ["/usr/local/bin/gunicorn", "-b", "0.0.0.0:8001", "app:app"]
+CMD ["/usr/local/bin/gunicorn", "-b", "0.0.0.0:8002", "app:app"]

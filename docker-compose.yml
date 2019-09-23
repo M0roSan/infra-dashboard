@@ -4,9 +4,24 @@ services:
   api-server:
     restart: always
     build: ./api-server
-    ports:
-      - "8000:8000"
+    expose:
+      - "8001"
     volumes:
       - ./banken_config.json:/banken/banken_config.json
-    command: /usr/local/bin/gunicorn -b 0.0.0.0:8000 app:app
-    
+    command: /usr/local/bin/gunicorn -b 0.0.0.0:8001 app:app
+    networks:
+      - host
+  
+  dashboard:
+    restart: always
+    build: ./dashboard
+    ports:
+      - 8002:8002
+    volumes:
+      - ./banken_config.json:/banken/banken_config.json
+    command: /usr/local/bin/gunicorn -b 0.0.0.0:8002 app:app
+    networks:
+      - host
+
+networks:
+  host:
