@@ -23,5 +23,33 @@ services:
     networks:
       - host
 
+  dash-sample:
+    restart: always
+    build: ./dash-sample
+    ports:
+      - 8050:8050
+    volumes:
+      - ./banken_config.json:/banken/banken_config.json
+    command: /usr/local/bin/gunicorn -b 0.0.0.0:8050 app:app.server
+
+
+  db:
+    restart: always
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - 3306:3306
+    expose:
+      - "3306"
+    volumes:
+      - my-db:/var/lib/mysql
+
 networks:
   host:
+
+volumes:
+  my-db:
