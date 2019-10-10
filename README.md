@@ -1,3 +1,6 @@
+This project is not up-to-date. It is moved to GitLab to leverage CICD pipeline.
+GitLab->ECR->ECS. 
+
 # infra-dashboard
 infrastructure dashboard leveraging docker and aws
 
